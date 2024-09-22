@@ -4,7 +4,8 @@
 import os
 
 # Third Party
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers import AutoTokenizer
+from liger_kernel.transformers import AutoLigerKernelForCausalLM
 import fire
 
 
@@ -17,7 +18,8 @@ def convert_bin_to_safetensors(input_dir, output_dir):
     model_path = os.path.expanduser(input_dir)
 
     tokenizer = AutoTokenizer.from_pretrained(model_path)
-    model = AutoModelForCausalLM.from_pretrained(model_path)
+    # model = AutoModelForCausalLM.from_pretrained(model_path)
+    model = AutoLigerKernelForCausalLM.from_pretrained(model_path)
 
     tokenizer.save_pretrained(output_dir)
     tokenizer.save_vocabulary(output_dir)
